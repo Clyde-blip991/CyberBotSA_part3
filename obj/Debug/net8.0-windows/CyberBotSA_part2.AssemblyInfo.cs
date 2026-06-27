@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CyberBotSA_part2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+112894bd3ff1910dc4c1507d1bc1dc704e2ef1e3")]
 [assembly: System.Reflection.AssemblyProductAttribute("CyberBotSA_part2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CyberBotSA_part2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

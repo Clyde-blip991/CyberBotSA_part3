@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="CyberBot SA - Cybersecurity Awareness Assistant"
-        Height="700" Width="900"
+        Height="700" Width="950"
         Background="#1a1a2e"
         WindowStartupLocation="CenterScreen">
 
@@ -11,12 +11,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
         <StackPanel Grid.Row="0" Background="#16213e" Margin="0,0,0,5">
-            <TextBlock Text="🛡 CYBERBOT SA" 
+            <TextBlock Text="🛡 CYBERBOT SA"
                        FontSize="28" FontWeight="Bold"
                        Foreground="#00d4ff"
                        HorizontalAlignment="Center"
@@ -25,19 +24,12 @@
                        FontSize="14"
                        Foreground="#a0a0a0"
                        HorizontalAlignment="Center"
-                       Margin="0,0,0,15"/>
-            <TextBlock x:Name="AsciiArt"
-                       FontFamily="Courier New"
-                       FontSize="8"
-                       Foreground="#00d4ff"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,10"
-                       Text="██████╗██╗   ██╗██████╗ ███████╗██████╗     ██████╗  ██████╗ ████████╗&#xa; ██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗    ██╔══██╗██╔═══██╗╚══██╔══╝&#xa; ██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝    ██████╔╝██║   ██║   ██║&#xa; ██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗    ██╔══██╗██║   ██║   ██║&#xa; ╚██████╗   ██║   ██████╔╝███████╗██║  ██║    ██████╔╝╚██████╔╝   ██║&#xa;  ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═════╝  ╚═════╝    ╚═╝"/>
+                       Margin="0,0,0,10"/>
         </StackPanel>
 
         <!-- User name bar -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" 
-                    Background="#0f3460" Margin="0,0,0,5" 
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    Background="#0f3460" Margin="0,0,0,5"
                     Height="40">
             <TextBlock x:Name="UserNameLabel"
                        Text="👤 Not logged in"
@@ -53,61 +45,263 @@
                        Margin="20,0,0,0"/>
         </StackPanel>
 
-        <!-- Chat area -->
-        <ScrollViewer Grid.Row="2" 
-                      x:Name="ChatScrollViewer"
-                      VerticalScrollBarVisibility="Auto"
-                      Margin="10,5,10,5"
-                      Background="#16213e">
-            <StackPanel x:Name="ChatPanel" Margin="10"/>
-        </ScrollViewer>
-
-        <!-- Input area -->
-        <Grid Grid.Row="3" Background="#16213e" Margin="10,5,10,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBox x:Name="UserInput"
-                     Grid.Column="0"
-                     Height="45"
-                     FontSize="14"
-                     Background="#0f3460"
-                     Foreground="White"
-                     CaretBrush="White"
-                     BorderBrush="#00d4ff"
-                     BorderThickness="2"
-                     Padding="10,5"
-                     VerticalContentAlignment="Center"
-                     KeyDown="UserInput_KeyDown"/>
-
-            <Button x:Name="SendButton"
-                    Grid.Column="1"
-                    Content="Send"
-                    Width="80" Height="45"
-                    Margin="5,0,0,0"
-                    Background="#00d4ff"
-                    Foreground="#1a1a2e"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="SendButton_Click"/>
-
-            <Button x:Name="ClearButton"
-                    Grid.Column="2"
-                    Content="Clear"
-                    Width="80" Height="45"
-                    Margin="5,0,0,0"
-                    Background="#e94560"
+        <!-- Tab Control -->
+        <TabControl Grid.Row="2"
+                    Background="#1a1a2e"
                     Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="ClearButton_Click"/>
-        </Grid>
+                    BorderBrush="#00d4ff">
+
+            <!-- Chat Tab -->
+            <TabItem Header="💬 Chat" Background="#16213e" Foreground="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer Grid.Row="0"
+                                  x:Name="ChatScrollViewer"
+                                  VerticalScrollBarVisibility="Auto"
+                                  Margin="10,5,10,5"
+                                  Background="#16213e">
+                        <StackPanel x:Name="ChatPanel" Margin="10"/>
+                    </ScrollViewer>
+
+                    <Grid Grid.Row="1" Background="#16213e" Margin="10,5,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="UserInput"
+                                 Grid.Column="0"
+                                 Height="45"
+                                 FontSize="14"
+                                 Background="#0f3460"
+                                 Foreground="White"
+                                 CaretBrush="White"
+                                 BorderBrush="#00d4ff"
+                                 BorderThickness="2"
+                                 Padding="10,5"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="UserInput_KeyDown"/>
+
+                        <Button x:Name="SendButton"
+                                Grid.Column="1"
+                                Content="Send"
+                                Width="80" Height="45"
+                                Margin="5,0,0,0"
+                                Background="#00d4ff"
+                                Foreground="#1a1a2e"
+                                FontWeight="Bold"
+                                FontSize="14"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="SendButton_Click"/>
+
+                        <Button x:Name="ClearButton"
+                                Grid.Column="2"
+                                Content="Clear"
+                                Width="80" Height="45"
+                                Margin="5,0,0,0"
+                                Background="#e94560"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                FontSize="14"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="ClearButton_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <!-- Tasks Tab -->
+            <TabItem Header="📋 Tasks" Background="#16213e" Foreground="White">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Add Task Section -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock Text="Add Cybersecurity Task"
+                                   Foreground="#00d4ff"
+                                   FontSize="16" FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Title:" Foreground="White" Margin="0,0,0,5"/>
+                        <TextBox x:Name="TaskTitle"
+                                 Height="35" FontSize="13"
+                                 Background="#0f3460" Foreground="White"
+                                 CaretBrush="White"
+                                 BorderBrush="#00d4ff" BorderThickness="2"
+                                 Padding="8,5" Margin="0,0,0,8"/>
+
+                        <TextBlock Text="Description:" Foreground="White" Margin="0,0,0,5"/>
+                        <TextBox x:Name="TaskDescription"
+                                 Height="35" FontSize="13"
+                                 Background="#0f3460" Foreground="White"
+                                 CaretBrush="White"
+                                 BorderBrush="#00d4ff" BorderThickness="2"
+                                 Padding="8,5" Margin="0,0,0,8"/>
+
+                        <TextBlock Text="Reminder (optional):" Foreground="White" Margin="0,0,0,5"/>
+                        <TextBox x:Name="TaskReminder"
+                                 Height="35" FontSize="13"
+                                 Background="#0f3460" Foreground="White"
+                                 CaretBrush="White"
+                                 BorderBrush="#00d4ff" BorderThickness="2"
+                                 Padding="8,5" Margin="0,0,0,8"/>
+
+                        <Button Content="Add Task"
+                                Height="40" FontSize="14"
+                                Background="#00d4ff" Foreground="#1a1a2e"
+                                FontWeight="Bold" BorderThickness="0"
+                                Cursor="Hand"
+                                Click="AddTask_Click"/>
+                    </StackPanel>
+
+                    <!-- Task Status -->
+                    <TextBlock x:Name="TaskStatusLabel"
+                               Grid.Row="1"
+                               Foreground="#00d4ff"
+                               FontSize="13"
+                               Margin="0,5,0,5"
+                               TextWrapping="Wrap"/>
+
+                    <!-- Task List -->
+                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                        <ListBox x:Name="TaskListBox"
+                                 Background="#16213e"
+                                 Foreground="White"
+                                 FontSize="13"
+                                 BorderBrush="#00d4ff"
+                                 BorderThickness="1"
+                                 Margin="0,5,0,5"/>
+                    </ScrollViewer>
+
+                    <!-- Task Actions -->
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,5,0,0">
+                        <Button Content="View Tasks"
+                                Width="120" Height="40"
+                                Margin="0,0,5,0"
+                                Background="#00d4ff" Foreground="#1a1a2e"
+                                FontWeight="Bold" BorderThickness="0"
+                                Cursor="Hand"
+                                Click="ViewTasks_Click"/>
+                        <Button Content="Complete Task"
+                                Width="130" Height="40"
+                                Margin="0,0,5,0"
+                                Background="#4CAF50" Foreground="White"
+                                FontWeight="Bold" BorderThickness="0"
+                                Cursor="Hand"
+                                Click="CompleteTask_Click"/>
+                        <Button Content="Delete Task"
+                                Width="120" Height="40"
+                                Background="#e94560" Foreground="White"
+                                FontWeight="Bold" BorderThickness="0"
+                                Cursor="Hand"
+                                Click="DeleteTask_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Quiz Tab -->
+            <TabItem Header="🎮 Quiz" Background="#16213e" Foreground="White">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Cybersecurity Quiz"
+                               Grid.Row="0"
+                               Foreground="#00d4ff"
+                               FontSize="16" FontWeight="Bold"
+                               Margin="0,0,0,10"/>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="QuizText"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   TextWrapping="Wrap"
+                                   Background="#16213e"
+                                   Padding="10"
+                                   Text="Press 'Start Quiz' to test your cybersecurity knowledge!"/>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2" Margin="0,10,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <Button Content="Start Quiz"
+                                    Width="120" Height="40"
+                                    Margin="0,0,5,0"
+                                    Background="#00d4ff" Foreground="#1a1a2e"
+                                    FontWeight="Bold" BorderThickness="0"
+                                    Cursor="Hand"
+                                    Click="StartQuiz_Click"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="QuizAnswer"
+                                     Width="200" Height="40"
+                                     FontSize="14"
+                                     Background="#0f3460" Foreground="White"
+                                     CaretBrush="White"
+                                     BorderBrush="#00d4ff" BorderThickness="2"
+                                     Padding="8,5"
+                                     VerticalContentAlignment="Center"
+                                     Margin="0,0,5,0"/>
+                            <Button Content="Submit Answer"
+                                    Width="130" Height="40"
+                                    Background="#4CAF50" Foreground="White"
+                                    FontWeight="Bold" BorderThickness="0"
+                                    Cursor="Hand"
+                                    Click="SubmitAnswer_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Activity Log Tab -->
+            <TabItem Header="📜 Activity Log" Background="#16213e" Foreground="White">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Activity Log"
+                               Grid.Row="0"
+                               Foreground="#00d4ff"
+                               FontSize="16" FontWeight="Bold"
+                               Margin="0,0,0,10"/>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="ActivityLogText"
+                                   Foreground="White"
+                                   FontSize="13"
+                                   TextWrapping="Wrap"
+                                   Background="#16213e"
+                                   Padding="10"
+                                   Text="No activity recorded yet."/>
+                    </ScrollViewer>
+
+                    <Button Grid.Row="2"
+                            Content="Refresh Log"
+                            Height="40" FontSize="14"
+                            Background="#00d4ff" Foreground="#1a1a2e"
+                            FontWeight="Bold" BorderThickness="0"
+                            Cursor="Hand"
+                            Margin="0,10,0,0"
+                            Click="RefreshLog_Click"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
-    </Window>
+</Window>
